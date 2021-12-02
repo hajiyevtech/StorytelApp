@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SharpVectors.Converters;
+using SharpVectors.Renderers.Wpf;
 
 namespace StorytelApp
 {
@@ -23,6 +25,32 @@ namespace StorytelApp
         public MainWindow()
         {
             InitializeComponent();
+
+            StorytelDbClassDataContext db = new StorytelDbClassDataContext();
+
+        }
+
+        private void UIElement_OnMouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Handled)
+            {
+                AraLbl.Foreground = new SolidColorBrush(Color.FromRgb(255, 85, 0));
+            }
+            else
+            {
+                AraLbl.Foreground = new SolidColorBrush(Color.FromArgb((byte)86.7, 0, 0, 0));
+
+            }
+        }
+
+        private void AraLbl_OnMouseEnter(object sender, MouseEventArgs e)
+        {
+            //AraLbl.Foreground = new SolidColorBrush(Color.FromRgb(255, 85, 0));
+        }
+
+        private void AraLbl_OnMouseLeave(object sender, MouseEventArgs e)
+        {
+            //AraLbl.Foreground = new SolidColorBrush(Color.FromArgb((byte)86.7, 0, 0, 0));
         }
     }
 }
