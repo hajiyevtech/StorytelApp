@@ -25,48 +25,49 @@
                 <ColumnDefinition />
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Label
+            <Viewbox
+                Grid.Column="0"
+                Margin="10,0,0,0"
+                HorizontalAlignment="Left">
+                <Label
                     Content="stroitel ™"
                     FontFamily="/Assets/Fonts/#Euclid Circular A"
                     FontSize="24"
                     FontStyle="Normal"
                     FontWeight="Bold"
-                    Foreground="#FFFF5500"
-                    Grid.Column="0"
-                    Margin="10,0,0,0"
-                    HorizontalAlignment="Stretch">
-            </Label>
-            <Label
-                    Grid.Column="1" HorizontalAlignment="Right"
+                    Foreground="#FFFF5500">
+                </Label>
+            </Viewbox>
+            <Viewbox Grid.Column="1" HorizontalAlignment="Right">
+                <Label
                     Name="AraLbl"
                     Content="ARA" Margin="0,0,10,0">
-                <Label.Style>
-                    <Style TargetType="Label">
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Foreground" Value="#FFFF5500"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Label.Style>
-            </Label>
-
-
-            <ComboBox
-                    Grid.Column="2" HorizontalAlignment="Right" Margin="20,0,10,0"
-                    
+                    <Label.Style>
+                        <Style TargetType="Label">
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Foreground" Value="#FFFF5500"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Label.Style>
+                </Label>
+            </Viewbox>
+            <Viewbox Grid.Column="2" HorizontalAlignment="Right" Margin="20,0,10,0">
+                <ComboBox
+                    Margin="5"
                     x:Name="FilledComboBox"
                     Width="300"
                     IsEnabled="{Binding Path=IsChecked, ElementName=FilledComboBoxEnabledCheckBox}"
                     materialDesign:HintAssist.Hint="KATEGORİLER" BorderBrush="Black">
-                <ComboBoxItem
+                    <ComboBoxItem
                         Content="Item 1" />
-                <ComboBoxItem
+                    <ComboBoxItem
                         Content="Item 2" />
-                <ComboBoxItem
+                    <ComboBoxItem
                         Content="Item 3" />
-            </ComboBox>
-
+                </ComboBox>
+            </Viewbox>
         </Grid>
     </Grid>
 </Window>
