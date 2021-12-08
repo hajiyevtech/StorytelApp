@@ -1,0 +1,40 @@
+﻿<UserControl
+    x:Class="StorytelApp.BookUC"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:StorytelApp"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Margin="4"
+    d:DesignHeight="180"
+    d:DesignWidth="140"
+    mc:Ignorable="d">
+    <Grid>
+        <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth0" Background="Transparent">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="45" />
+                </Grid.RowDefinitions>
+                <Image
+                    Name="Cover"
+                    Grid.Row="0"
+                    Margin="7,0,7,0"
+                    Source="{Binding BookItm.ImageLink, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <Label Grid.Row="1" Name="Label1" FontFamily="/Assets/Fonts/#Euclid Circular A"
+                       FontSize="15" HorizontalAlignment="Left">
+                    <TextBlock TextWrapping="Wrap" Text="{Binding BkName}" />
+                </Label>
+                <Label
+                    Grid.Row="1"
+                    FontFamily="/Assets/Fonts/#Euclid Circular A"
+                    FontSize="15">
+                    <Label.Content>
+                        <AccessText TextWrapping="Wrap" Text="{Binding BkName}"/>
+                    </Label.Content>
+                </Label>
+            </Grid>
+        </materialDesign:Card>
+    </Grid>
+</UserControl>
