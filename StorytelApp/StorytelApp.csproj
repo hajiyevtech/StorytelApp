@@ -104,6 +104,7 @@
     <Compile Include="MainWindowBackup.xaml.cs">
       <DependentUpon>MainWindowBackup.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Test2.xaml.cs">
       <DependentUpon>Test2.xaml</DependentUpon>
     </Compile>

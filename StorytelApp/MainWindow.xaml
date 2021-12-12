@@ -36,37 +36,38 @@
                     FontWeight="Bold"
                     Foreground="#FFFF5500" />
             </Viewbox>
-            <Viewbox Grid.Column="1" HorizontalAlignment="Right">
-                <Label
-                    Name="AraLbl"
-                    Margin="0,0,10,0"
-                    Content="ARA">
-                    <Label.Style>
-                        <Style TargetType="Label">
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Foreground" Value="#FFFF5500" />
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Label.Style>
-                </Label>
-            </Viewbox>
+            <TextBox
+                Grid.Column="1"
+                Name="SearchBox"
+                TextChanged="TextBoxBase_OnTextChanged"
+                Margin="15 5 5 5"
+                materialDesign:TextFieldAssist.HasClearButton="True"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                <materialDesign:HintAssist.Hint>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon
+                            Width="20"
+                            Height="20"
+                            Margin="0,0,5,0"
+                            VerticalAlignment="Center"
+                            Kind="Magnify" />
+                        <TextBlock Text="Ara" />
+                    </StackPanel>
+                </materialDesign:HintAssist.Hint>
+            </TextBox>
             <Viewbox
                 Grid.Column="2"
                 Margin="20,0,10,0"
                 HorizontalAlignment="Right">
                 <ComboBox
-                    x:Name="FilledComboBox"
+                    Name="CategoriesCmb"
                     Width="300"
                     Margin="5"
                     materialDesign:HintAssist.Hint="KATEGORİLER"
                     BorderBrush="Black"
-                    IsEnabled="{Binding Path=IsChecked, ElementName=FilledComboBoxEnabledCheckBox}">
-                    <ComboBoxItem Content="Item 1" />
-                    <ComboBoxItem Content="Item 2" />
-                    <ComboBoxItem Content="Item 3" />
-                </ComboBox>
+                    ItemsSource="{Binding Categories}"
+                    SelectedItem="{Binding CategorySelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    SelectionChanged="CategoriesCmb_OnSelectionChanged" />
             </Viewbox>
         </Grid>
         <ScrollViewer
@@ -84,7 +85,7 @@
                     Grid.Row="0"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
-                    Content="ÇOCUK"
+                    Content="{Binding ElementName=CategoriesCmb, Path=SelectedItem}"
                     FontFamily="/Assets/Fonts/#Euclid Circular A"
                     FontSize="48"
                     FontStyle="Normal"
@@ -95,29 +96,26 @@
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     <ComboBox
+                        Name="SortCmb"
                         Grid.Column="0"
                         Width="250"
                         Margin="5,5,25,5"
                         HorizontalAlignment="Right"
                         materialDesign:HintAssist.Hint="SIRALA"
                         BorderBrush="Black"
-                        IsEnabled="{Binding Path=IsChecked, ElementName=FilledComboBoxEnabledCheckBox}">
-                        <ComboBoxItem Content="Item 1" />
-                        <ComboBoxItem Content="Item 2" />
-                        <ComboBoxItem Content="Item 3" />
-                    </ComboBox>
+                        SelectedItem="{Binding SortSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        SelectionChanged="Selector_OnSelectionChanged" />
                     <ComboBox
+                        Name="LangCmb"
                         Grid.Column="1"
                         Width="250"
                         Margin="25,5,5,5"
                         HorizontalAlignment="Left"
-                        materialDesign:HintAssist.Hint="SIRALA"
+                        materialDesign:HintAssist.Hint="DIL"
                         BorderBrush="Black"
-                        IsEnabled="{Binding Path=IsChecked, ElementName=FilledComboBoxEnabledCheckBox}">
-                        <ComboBoxItem Content="Item 1" />
-                        <ComboBoxItem Content="Item 2" />
-                        <ComboBoxItem Content="Item 3" />
-                    </ComboBox>
+                        ItemsSource="{Binding Languages}"
+                        SelectedItem="{Binding LanguageSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        SelectionChanged="LangCmb_OnSelectionChanged" />
                 </Grid>
                 <WrapPanel Grid.Row="2" HorizontalAlignment="Center">
                     <ListBox
