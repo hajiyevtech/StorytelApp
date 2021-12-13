@@ -232,7 +232,7 @@ namespace StorytelApp
             if (!(sender is ListBox lst)) return;
             if (!(lst.SelectedItem is BookUC book)) return;
             var bookInfo = new Info(book.BookItm);
-            bookInfo.Show();
+            bookInfo.ShowDialog();
         }
 
         private void Window_Closed(object sender, EventArgs e)

@@ -10,12 +10,18 @@
     Width="500"
     AllowsTransparency="True"
     Background="Transparent"
+    PreviewKeyDown="Window_KeyDown"
     ResizeMode="NoResize"
     SizeToContent="Height"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
-    mc:Ignorable="d" PreviewKeyDown="Window_KeyDown">
-    <materialDesign:Card UniformCornerRadius="15">
+    mc:Ignorable="d">
+    <materialDesign:Card
+        Margin="35"
+        materialDesign:ShadowAssist.ShadowDepth="Depth5"
+        BorderBrush="Black"
+        BorderThickness="5"
+        UniformCornerRadius="15">
         <Grid Margin="15,15,15,15" VerticalAlignment="Stretch">
             <Grid.RowDefinitions>
                 <RowDefinition />
@@ -30,19 +36,19 @@
                             CornerRadius="10,10,0,0">
                             <Border.Background>
                                 <ImageBrush
-                                    ImageSource="{Binding Image}"
                                     x:Name="ImgBox"
+                                    ImageSource="{Binding Image}"
                                     Stretch="Uniform" />
                             </Border.Background>
                         </Border>
                         <Button
                             Name="PlayBtn"
-                            Click="ButtonBase_OnClick"
                             Width="75"
                             Height="75"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             Background="#BF1A1A1A"
+                            Click="ButtonBase_OnClick"
                             Style="{StaticResource MaterialDesignIconButton}"
                             ToolTip="MaterialDesignIconButton">
                             <materialDesign:PackIcon
@@ -64,10 +70,10 @@
                         Küçük Can ve Domates
                     </Label>
                     <materialDesign:RatingBar
-                        IsReadOnly="True"
                         Name="RatingBar"
                         HorizontalAlignment="Center"
-                        VerticalAlignment="Top" />
+                        VerticalAlignment="Top"
+                        IsReadOnly="True" />
                 </StackPanel>
 
             </Grid>

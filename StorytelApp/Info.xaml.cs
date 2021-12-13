@@ -35,7 +35,13 @@ namespace StorytelApp
             LangTxt.Content = book.Language;
             CatTxt.Content = book.Category;
             RatingBar.Value = (int)book.Rating;
-            SoundUrl = book.SoundLink;
+            if (book.SoundLink == "")
+                PlayBtn.IsEnabled = false;
+            else
+            {
+                PlayBtn.IsEnabled = true;
+                SoundUrl = book.SoundLink;
+            }
         }
 
         private async Task PlayMedia()

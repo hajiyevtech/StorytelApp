@@ -12,7 +12,7 @@
     FontFamily="/Assets/Fonts/#Euclid Circular A"
     TextElement.FontSize="10"
     TextElement.FontWeight="Regular"
-    mc:Ignorable="d" WindowStartupLocation="CenterScreen" Closed="Window_Closed">
+    mc:Ignorable="d" WindowStartupLocation="CenterScreen" Closed="Window_Closed" WindowState="Maximized">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="45" />
