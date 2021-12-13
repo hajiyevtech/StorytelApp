@@ -244,7 +244,6 @@
     <Resource Include="Assets\Fonts\EuclidSemiBold.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\000019062.jpg" />
     <Content Include="Assets\storytel.svg" />
     <Resource Include="Assets\storytel21024.png" />
     <Resource Include="Assets\storytelPNG-24.png" />
