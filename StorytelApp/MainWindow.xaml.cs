@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 using StorytelApp.Annotations;
 using StorytelApp.DataAccess.Concrete;
 using StorytelApp.DataAccess.Context;
@@ -21,19 +22,62 @@ namespace StorytelApp
 
         private string _categorySelected;
         public string CategorySelected
-        { get => _categorySelected; set { _categorySelected = value; OnPropertyChanged(); } }
+        {
+            get => _categorySelected;
+            set
+            {
+                _categorySelected = value;
+                OnPropertyChanged();
+            }
+        }
+
         private string _sortSelected;
         public string SortSelected
-        { get => _sortSelected; set { _sortSelected = value; OnPropertyChanged(); } }
+        {
+            get => _sortSelected;
+            set
+            {
+                _sortSelected = value;
+                OnPropertyChanged();
+            }
+        }
 
         private string _languageSelected;
         public string LanguageSelected
-        { get => _languageSelected; set { _languageSelected = value; OnPropertyChanged(); } }
+        {
+            get => _languageSelected;
+            set
+            {
+                _languageSelected = value;
+                OnPropertyChanged();
+            }
+        }
+
+        //create full property for SelectedBook
+        private BookUC _selectedBook;
+
+        public BookUC SelectedBook
+        {
+            get => _selectedBook;
+            set
+            {
+                _selectedBook = value;
+                OnPropertyChanged();
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
+
         [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null) =>
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
         public ObservableCollection<string> Categories { get; set; }
         public ObservableCollection<string> Languages { get; set; }
+
+        //create property for Info window
+        public Info Info { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -61,6 +105,7 @@ namespace StorytelApp
             CategorySelected = "All";
             LanguageSelected = "All";
         }
+
         private void QueryAllBooks()
         {
             BookUCs.Clear();
@@ -73,6 +118,7 @@ namespace StorytelApp
                 BookUCs.Add(bookUc);
             }
         }
+
         private void WrapPanel_MouseWheel(object sender, MouseWheelEventArgs e)
         {
             if (e.Delta < 0)
@@ -82,6 +128,7 @@ namespace StorytelApp
                 for (int i = 0; i < 3; i++)
                     ScrlVwr.LineUp();
         }
+
         private void CategoriesCmb_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SearchBox.Text = "";
@@ -105,6 +152,7 @@ namespace StorytelApp
             else
                 QueryAllBooks();
         }
+
         private void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SearchBox.Text = "";
@@ -134,6 +182,7 @@ namespace StorytelApp
             else
                 QueryAllBooks();
         }
+
         private void ErrorMethod()
         {
             MessageBox.Show("Sorry, no results were found for your query. Please try again");
@@ -143,6 +192,7 @@ namespace StorytelApp
             Query = DefaultQuery;
             QueryAllBooks();
         }
+
         private void LangCmb_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             BookUCs.Clear();
@@ -163,18 +213,31 @@ namespace StorytelApp
             else
                 QueryAllBooks();
         }
+
         private void TextBoxBase_OnTextChanged(object sender, TextChangedEventArgs e)
         {
             if (!(sender is TextBox txt)) return;
             var result = Query.Where(b => b.BookName.ToLower().Contains(txt.Text.ToLower())).ToList();
             BookUCs.Clear();
-            foreach (var book in result)
+            foreach (var bookUc in result.Select(book => new BookUC(book)))
             {
-                var bookUc = new BookUC(book);
                 bookUc.Width = 140;
                 bookUc.Height = 180;
                 BookUCs.Add(bookUc);
             }
+        }
+
+        private void Control_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (!(sender is ListBox lst)) return;
+            if (!(lst.SelectedItem is BookUC book)) return;
+            var bookInfo = new Info(book.BookItm);
+            bookInfo.Show();
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }

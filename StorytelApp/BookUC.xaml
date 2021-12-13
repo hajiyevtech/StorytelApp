@@ -22,7 +22,7 @@
                     Grid.Row="0"
                     Margin="7,0,7,0"
                     Source="{Binding BookItm.ImageLink, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                <Label Grid.Row="1" Name="Label1" FontFamily="/Assets/Fonts/#Euclid Circular A"
+                <Label Grid.Row="1" Name="BookName" FontFamily="/Assets/Fonts/#Euclid Circular A"
                        FontSize="15" HorizontalAlignment="Left">
                     <TextBlock TextWrapping="Wrap" Text="{Binding BkName}" />
                 </Label>

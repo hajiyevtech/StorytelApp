@@ -12,7 +12,7 @@
     FontFamily="/Assets/Fonts/#Euclid Circular A"
     TextElement.FontSize="10"
     TextElement.FontWeight="Regular"
-    mc:Ignorable="d">
+    mc:Ignorable="d" WindowStartupLocation="CenterScreen" Closed="Window_Closed">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="45" />
@@ -119,8 +119,9 @@
                 </Grid>
                 <WrapPanel Grid.Row="2" HorizontalAlignment="Center">
                     <ListBox
-                        Grid.Row="1"
+                        Name="LstBox"
                         materialDesign:ScrollBarAssist.ButtonsVisibility="Hidden"
+                        MouseDoubleClick="Control_OnMouseDoubleClick"
                         Background="White"
                         BorderBrush="{x:Null}"
                         BorderThickness="0"
