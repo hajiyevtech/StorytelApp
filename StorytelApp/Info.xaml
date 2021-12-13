@@ -50,7 +50,7 @@
                             Background="#BF1A1A1A"
                             Click="ButtonBase_OnClick"
                             Style="{StaticResource MaterialDesignIconButton}"
-                            ToolTip="MaterialDesignIconButton">
+                            ToolTip="Play/Pause">
                             <materialDesign:PackIcon
                                 Width="35"
                                 Height="35"
